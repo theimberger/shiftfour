@@ -1,4 +1,4 @@
-const DomNodeCollection  = require("./dom_node_collection.js");
+const DomNodeCollection  = require("./lib/dom_node_collection.js");
 const  functArray = [];
 
 window.onload = () => {
