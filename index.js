@@ -75,7 +75,7 @@ window.onload = () => {
 };
 
 
-window.$l = function(selector) {
+window.s4 = function(selector) {
   if (selector instanceof Function){
     if (document.readyState === 'complete') {
       selector();
@@ -107,7 +107,7 @@ window.$l = function(selector) {
 };
 
 
-$l.extend = function(objects) {
+s4.extend = function(objects) {
   const args = Array.from(arguments);
   const merged = {};
 
@@ -120,7 +120,7 @@ $l.extend = function(objects) {
   return merged;
 };
 
-$l.ajax = function(options){
+s4.ajax = function(options){
   const defaults = {
     type: 'GET',
     url: "",
