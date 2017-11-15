@@ -87,10 +87,7 @@ window.s4 = function(selector) {
 
   var elementList;
   if (selector instanceof HTMLElement){
-    const arr = [];
-    elementList.forEach( (el) => {
-      arr.push(el);
-    });
+    const arr = [selector];
     var myNode = new DomNodeCollection(arr);
   }
   else {
