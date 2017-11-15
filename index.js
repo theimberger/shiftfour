@@ -85,7 +85,7 @@ window.s4 = function(selector) {
     return;
   }
 
-  var elementList = document.querySelectorAll(selector);
+  var elementList;
   if (selector instanceof HTMLElement){
     const arr = [];
     elementList.forEach( (el) => {
