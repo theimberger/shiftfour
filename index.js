@@ -204,6 +204,16 @@ DomNodeCollection.prototype.children = function() {
   return new DomNodeCollection(resultArray);
 };
 
+DomNodeCollection.prototype.last = function() {
+  let last = this.arr[this.arr.length - 1];
+  return new DomNodeCollection([last]);
+};
+
+DomNodeCollection.prototype.first = function() {
+  let first = this.arr[0];
+  return new DomNodeCollection([first]);
+};
+
 DomNodeCollection.prototype.parent = function() {
   const resultArray = [];
   this.arr.forEach((ele) => {
@@ -215,8 +225,7 @@ DomNodeCollection.prototype.parent = function() {
 DomNodeCollection.prototype.find = function(selector) {
   var selectedList = document.querySelectorAll(selector);
   const arr = [];
-  selectedList.forEach( (el) => {
-  arr.push(el); });
+  selectedList.forEach( (el) => {arr.push(el); });
   return new DomNodeCollection(arr);
 };
 
@@ -248,6 +257,12 @@ DomNodeCollection.prototype.append = function(futureChild) {
       });
     });
   }
+};
+
+DomNodeCollection.prototype.css = function(property, value) {
+  this.arr.forEach((ele) => {
+    ele.style[property] = value;
+  });
 };
 
 DomNodeCollection.prototype.on = function (type, callback) {
