@@ -1,12 +1,14 @@
-const DomNodeCollection  = require("./dom_node_collection.js");
-const  functArray = [];
+# shiftFour
+shiftFour is a lightweight JavaScript library inspired by jQuery.  It allows users to create
+DomNodeCollection instances using the primary function, s4.  These instances provide the user a number of
+helpful methods, such as #css(property, value), #append, #remove, and #on and #off event listener functions.
 
-window.onload = () => {
-  functArray.forEach((fun) => { fun(); });
-};
+## s4
+The primary method for shiftFour, takes in either a selector or a function.  Queues functions to fire when
+document is loaded.
 
-
-window.s4 = function(selector) {
+```javascript
+s4 = function(selector) {
   if (selector instanceof Function){
     if (document.readyState === 'complete') {
       selector();
@@ -29,10 +31,5 @@ window.s4 = function(selector) {
     });
     myNode = new DomNodeCollection(arr);
   }
-
-  return myNode;
-
-};
-
-s4.extend = require("./extend.js");
-s4.ajax = require("./ajax_utility.js");
+}
+```

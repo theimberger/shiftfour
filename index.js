@@ -60,14 +60,34 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+const extend = function(objects) {
+  const args = Array.from(arguments);
+  const merged = {};
+
+  args.forEach((obj) => {
+    Object.keys(obj).forEach((key) =>{
+      merged[key] = obj[key];
+    });
+  });
+
+  return merged;
+};
+
+module.exports = extend;
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const DomNodeCollection  = __webpack_require__(1);
+const DomNodeCollection  = __webpack_require__(2);
 const  functArray = [];
 
 window.onload = () => {
@@ -103,48 +123,12 @@ window.s4 = function(selector) {
 
 };
 
-
-s4.extend = function(objects) {
-  const args = Array.from(arguments);
-  const merged = {};
-
-  args.forEach((obj) => {
-    Object.keys(obj).forEach((key) =>{
-      merged[key] = obj[key];
-    });
-  });
-
-  return merged;
-};
-
-s4.ajax = function(options){
-  const defaults = {
-    type: 'GET',
-    url: "",
-   success: (data) => {
-     console.log("Success");
-     console.log(data);
-   },
-   error: () => {
-     console.error("Failure");
-   }
-  };
-
-  options = this.extend(defaults, options);
-
-  const xhr = new XMLHttpRequest();
-  xhr.open(options[type],options[url]);
-
-  xhr.onload = function () {
-    return options[success]();
-  };
-
-  xhr.send();
-};
+s4.extend = __webpack_require__(0);
+s4.ajax = __webpack_require__(3);
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 function DomNodeCollection(arr) {
@@ -282,6 +266,67 @@ DomNodeCollection.prototype.off = function (type) {
 
 
 module.exports = DomNodeCollection;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const extend = __webpack_require__(0);
+
+const AjaxUtility = function(options){
+  const defaults = {
+    method: 'GET',
+    url: "",
+   success: (data) => {
+     console.log("Success");
+     console.log(data);
+   },
+   error: () => {
+     console.error("Failure");
+   }
+  };
+
+  options = extend(defaults, options);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open(options.method, options.url);
+
+  if (options.success) {
+    xhr.onload = function (data) {
+      return options.success(data);
+    };
+    if (options.failure) {
+      xhr.onerror = function(data) {
+        return options.failure(data);
+      };
+    }
+
+    xhr.onabort = function(data) {
+      return options.failure(data);
+    };
+  } else {
+    return new Promise((resolve, reject) => {
+      xhr.onload = function (data) {
+        return resolve(data);
+      };
+
+      xhr.onerror = function(data) {
+        return reject(data);
+      };
+      xhr.send(options.data);
+    });
+  }
+
+
+  xhr.send(options.data);
+
+
+
+
+};
+
+module.exports = AjaxUtility;
 
 
 /***/ })
