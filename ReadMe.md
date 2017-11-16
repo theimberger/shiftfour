@@ -5,7 +5,7 @@ helpful methods, such as #css(property, value), #append, #remove, and #on and #o
 
 ## s4
 The primary method for shiftFour, takes in either a selector or a function.  Queues functions to fire when
-document is loaded.
+document is loaded or returns a DomNodeCollection instance with HTML elements with the given selector.
 
 ```javascript
 s4 = function(selector) {
