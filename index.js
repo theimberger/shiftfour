@@ -199,9 +199,9 @@ DomNodeCollection.prototype.attr = function(name, value) {
 DomNodeCollection.prototype.children = function() {
   const resultArray = [];
   this.arr.forEach((ele) => {
-    resultArray.push(ele.children);
+    resultArray.push(ele);
   });
-  return new DomNodeCollection(resultArray);
+  return resultArray;
 };
 
 DomNodeCollection.prototype.last = function() {
