@@ -3,6 +3,9 @@ shiftFour is a lightweight JavaScript library inspired by jQuery.  It allows use
 DomNodeCollection instances using the primary function, s4.  These instances provide the user a number of
 helpful methods, such as #css(property, value), #append, #remove, and #on and #off event listener functions.
 
+Check out a [demo](https://theimberger.github.io/shiftfour_demo/).
+[Demo Repo](https://github.com/theimberger/shiftfour_demo).
+
 ## s4
 The primary method for shiftFour, takes in either a selector or a function.  Queues functions to fire when
 document is loaded or returns a DomNodeCollection instance with HTML elements with the given selector.
