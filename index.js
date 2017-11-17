@@ -105,10 +105,11 @@ window.s4 = function(selector) {
     return;
   }
 
-  var elementList;
+  let elementList;
+  let myNode;
   if (selector instanceof HTMLElement){
     const arr = [selector];
-    var myNode = new DomNodeCollection(arr);
+    myNode = new DomNodeCollection(arr);
   }
   else {
     elementList = document.querySelectorAll(selector);
@@ -207,7 +208,7 @@ DomNodeCollection.prototype.parent = function() {
 };
 
 DomNodeCollection.prototype.find = function(selector) {
-  var selectedList = document.querySelectorAll(selector);
+  let selectedList = document.querySelectorAll(selector);
   const arr = [];
   selectedList.forEach( (el) => {arr.push(el); });
   return new DomNodeCollection(arr);
@@ -257,7 +258,7 @@ DomNodeCollection.prototype.on = function (type, callback) {
 };
 
 DomNodeCollection.prototype.off = function (type) {
-  var callback = this.callbacks[type];
+  let callback = this.callbacks[type];
   this.callbacks[type] = null;
   this.arr.forEach( (ele) => {
     ele.removeEventListener(type, callback);
