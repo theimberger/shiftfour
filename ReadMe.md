@@ -44,11 +44,11 @@ a DomNodeCollection, elements have access to the following methods:
 
 * #html(string) - changes the innerHTML of the element(s) of the collection to the given string
 * #empty() - clears the inner HTML of the element(s)
-* # addClass(className) - adds the given class to the element(s)
-* # removeClass(className) - removes the given class to the element(s)
-* # attr(name, value) - sets the given attribute of the element(s) to the given value
-* # children - returns an array of children of the element(s)
-* # parent - returns the parent of the element(s)
+* #addClass(className) - adds the given class to the element(s)
+* #removeClass(className) - removes the given class to the element(s)
+* #attr(name, value) - sets the given attribute of the element(s) to the given value
+* #children - returns an array of children of the element(s)
+* #parent - returns the parent of the element(s)
 * #last - returns the last element of the collection
 * #first - returns the first element of the collection
 * #find(selector) - returns elements in the collection with the given selector
